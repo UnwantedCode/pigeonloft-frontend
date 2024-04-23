@@ -1,0 +1,42 @@
+.footer {
+  display: flex;
+  background-color: #ffffff;
+  padding: 0 60px;
+  border-radius: 40px 40px 0 0;
+  height: 57px;
+  justify-content: center;
+  box-shadow: 0px -3px 3px 0px rgba(0, 0, 0, 0.25);
+}
+.footer .footerContainer {
+  display: flex;
+  max-width: 1270px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer .footerContainer .logoWrapper {
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
+}
+.footer .footerContainer .logoWrapper .logo {
+  background-image: url("../../assets/images/logo_header.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 173px;
+  height: 42px;
+  flex-shrink: 0;
+  margin: 7px 0 8px;
+  transition: 0.5s all ease-in-out;
+  opacity: 1;
+  cursor: pointer;
+}
+.footer .footerContainer .text {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/*# sourceMappingURL=Footer.module.css.map */
