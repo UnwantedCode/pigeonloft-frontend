@@ -2,9 +2,9 @@
 import {useState} from "react";
 import {useCookies} from "react-cookie";
 import {Link, Navigate} from "react-router-dom";
-import {Helmet} from "react-helmet";
 
 import styles from './LoginPanel.module.css'
+import {Helmet} from "react-helmet-async";
 
 function LoginPanel() {
     const [email, setEmail] = useState("");
@@ -100,7 +100,7 @@ function LoginPanel() {
                         </label>
                         <button className={styles.loginPanelButton} type="submit">Zaloguj</button>
                     </form>
-                    <div className={styles.loginPanelRegister}>Nie masz konta? <Link to={'/register'}>Zarejestruj
+                    <div className={styles.loginPanelRegister}>Nie masz konta? <Link to={'/rejestracja'}>Zarejestruj
                         się</Link></div>
                     {error && <p>{error}</p>}
                 </div>

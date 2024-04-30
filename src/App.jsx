@@ -6,23 +6,26 @@ import "./assets/styles/index.css";
 import MainPage from "@/Containers/MainPage/MainPage.jsx";
 import GamingRooms from "@/Containers/GamingRooms/GamingRooms.jsx";
 import Footer from "@/Containers/Footer/Footer.jsx";
+import {HelmetProvider} from "react-helmet-async";
 
 
 
 function App() {
 
     return (
-        <Router>
+        <HelmetProvider>
+            <Router>
 
             <Header />
             <Routes>
                 <Route path="/" element={< MainPage />} />
-                <Route path="/login" element={< LoginPanel />} />
-                <Route path="/register" element={< RegisterPanel />} />
-                <Route path="/gaming-rooms" element={< GamingRooms />} />
+                <Route path="/logowanie" element={< LoginPanel />} />
+                <Route path="/rejestracja" element={< RegisterPanel />} />
+                {/*<Route path="/gaming-rooms" element={< GamingRooms />} />*/}
             </Routes>
             <Footer />
         </Router>
+        </HelmetProvider>
 
     )
 }

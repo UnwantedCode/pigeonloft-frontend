@@ -1,14 +1,23 @@
-import React, {useState} from "react";
+import  {useState} from "react";
 import {useCookies} from "react-cookie";
-import {Link, Navigate, redirect} from "react-router-dom";
-import {Helmet} from "react-helmet";
+import {Navigate,  useNavigate} from "react-router-dom";
 import styles from './RegisterPanel.module.css'
+import {Helmet} from "react-helmet-async";
 
 function RegisterPanel() {
+    const navigate = useNavigate(); // add this line
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [error, setError] = useState("");
+
+    const [emailClass, setEmailClass] = useState(styles.inputWraper);
+    const [passwordClass, setPasswordClass] = useState(styles.inputWraper);
+    const [confirmPasswordClass, setConfirmPasswordClass] = useState(styles.inputWraper);
+
+    const [errorEmail, setErrorEmail] = useState("");
+    const [errorPassword, setErrorPassword] = useState("");
+    const [errorConfirmPassword, setErrorConfirmPassword] = useState("");
 
     const jwtCookieName = "jwtToken";
     const [cookie, setCookie] = useCookies([jwtCookieName]);
@@ -21,21 +30,49 @@ function RegisterPanel() {
 
     const handleRegister = (e) => {
         e.preventDefault();
+        let passwordLength = 8;
 
         if (!email || !password || !confirmPassword) {
-            setError("All fields are required");
+            //setError("Wszystkie pola są wymagane");
+            setEmailClass(styles.inputWraperInvalid);
+            setPasswordClass(styles.inputWraperInvalid);
+            setConfirmPasswordClass(styles.inputWraperInvalid);
             return;
         }
         // if email is not valid
-        if (!email.includes("@")) {
-            setError("Email is not valid");
+        if (!email) {
+            setErrorEmail("Email jest wymagany")
+            setEmailClass(styles.inputWraperInvalid);
+            return;
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+            setErrorEmail("Adres email jest nieprawidłowy");
+            setEmailClass(styles.inputWraperInvalid);
             return;
         }
+        setErrorEmail("");
+        setEmailClass(styles.inputWraper);
+
+        if (!password) {
+            setErrorPassword("Hasło jest wymagane");
+            setPasswordClass(styles.inputWraperInvalid);
+            return;
+        }
+        if (password.length < passwordLength) {
+            setErrorPassword(`Hasło musi mieć co najmniej ${passwordLength} znaków`);
+            setPasswordClass(styles.inputWraperInvalid);
+            return;
+        }
+        setErrorPassword("");
+        setPasswordClass(styles.inputWraper);
+
         // if password and confirm password do not match
         if (password !== confirmPassword) {
-            setError("Passwords do not match");
+            setErrorConfirmPassword("Hasła nie są takie same");
+            setConfirmPasswordClass(styles.inputWraperInvalid);
             return;
         }
+        setErrorConfirmPassword("");
+        setConfirmPasswordClass(styles.inputWraper);
         // fetch email and password and get token
         fetch("/api/Accounts", {
             method: "POST",
@@ -51,10 +88,15 @@ function RegisterPanel() {
                 throw new Error("Register failed");
             })
             .then((data) => {
-                console.log(data);
+                if (data.success){
+                    console.log("pomyslnie");
+                    navigate('/logowanie'); // use navigate function here
+                }
             })
             .catch((error) => {
-                setError(error.message);
+                setErrorEmail("Email jest już zajęty")
+                setEmailClass(styles.inputWraperInvalid);
+
             });
 
     };
@@ -67,44 +109,46 @@ function RegisterPanel() {
                 <div className={styles.registerPanel}>
                     <h1 className={styles.registerPanelTitle}>Rejestracja</h1>
                     <form className={styles.registerPanelForm} onSubmit={handleRegister}>
-                        <label className={styles.inputWraper}>
+                        <label className={emailClass}>
                             <p className={styles.inputTitle}>
-                                Email
+                                Email {errorEmail && <span className={styles.error}>{" - "+errorEmail}</span>}
                             </p>
                             <input
                                 className={styles.input}
                                 type="text"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                required={true}
+
                             />
                         </label>
 
-                        <label className={styles.inputWraper}>
+                        <label className={passwordClass}>
                             <p className={styles.inputTitle}>
-                                Hasło
+                                Hasło {errorPassword && <span className={styles.error}>{" - "+errorPassword}</span>}
                             </p>
                             <input
                                 className={styles.input}
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                required={true}
                             />
                         </label>
-                        <label className={styles.inputWraper}>
+                        <label className={confirmPasswordClass}>
                             <p className={styles.inputTitle}>
-                                Powtórz hasło
+                                Powtórz hasło {errorConfirmPassword && <span className={styles.error}>{" - "+errorConfirmPassword}</span>}
                             </p>
                             <input
                                 className={styles.input}
                                 type="password"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
+                                required={true}
                             />
                         </label>
                         <button className={styles.registerPanelButton} type="submit">Zarejestruj</button>
                     </form>
-
-                    {error && <p>{error}</p>}
                 </div>
             </div>
         </>

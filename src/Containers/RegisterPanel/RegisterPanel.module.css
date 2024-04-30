@@ -67,6 +67,37 @@
 .background .registerPanel .registerPanelForm .inputWraper .input:hover {
   border-color: #888;
 }
+.background .registerPanel .registerPanelForm .inputWraperInvalid {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 671px;
+  margin-bottom: 8px;
+}
+.background .registerPanel .registerPanelForm .inputWraperInvalid .inputTitle {
+  color: #a00;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+  align-self: flex-start;
+  margin: 14px 0 5px 0;
+}
+.background .registerPanel .registerPanelForm .inputWraperInvalid .input {
+  border: 1px solid #EFEFEF;
+  border-radius: 20px;
+  padding: 0 15px;
+  height: 61px;
+  background-color: #EFEFEF;
+  box-sizing: border-box;
+  transition: 0.3s;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 100%;
+  border-color: #a00;
+}
 .background .registerPanel .registerPanelForm .registerPanelButton {
   margin-top: 20px;
   width: 308px;

@@ -1,12 +1,17 @@
 //footer
 
-import React from 'react';
+import {useEffect} from 'react';
 import styles from './Footer.module.css'
 import {Link} from "react-router-dom";
+import {minHeight} from "@/Components/Helpers/Functions.jsx";
 
 function Footer() {
+
+    useEffect(() => {
+        minHeight()
+    },[])
     return (
-        <div className={styles.footer}>
+        <footer className={styles.footer}>
             <div className={styles.footerContainer}>
                 <div className={styles.logoWrapper}>
                     <Link to={'/'} className={styles.logo}></Link>
@@ -18,7 +23,7 @@ function Footer() {
                     </span>
 
             </div>
-        </div>
+        </footer>
     );
 }
 

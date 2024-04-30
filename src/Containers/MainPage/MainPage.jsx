@@ -1,14 +1,14 @@
 import styles from "./MainPage.module.css";
-import {Helmet} from "react-helmet";
 
 import bigImage from "../../assets/images/main-page-logo.png";
+import {Helmet} from "react-helmet-async";
 
 //show big image and some text under it
 function MainPage() {
     return (
         <>
             <Helmet>
-                <title>Home</title>
+                <title>Strona glówna</title>
             </Helmet>
             <div className={styles.mainWrapper}>
                 <div className={styles.mainPageContainer}>
@@ -23,26 +23,8 @@ function MainPage() {
 
                         </div>
                     </div>
-                    <p className={styles.bottomTitle}>NA CO CZEKASZ?<div className={styles.bottomTitleBold}>ZAGRAJ JUŻ TERAZ</div></p>
+                    <div className={styles.bottomTitle}>NA CO CZEKASZ?<div className={styles.bottomTitleBold}>ZAGRAJ JUŻ TERAZ</div></div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
         </>
     );
