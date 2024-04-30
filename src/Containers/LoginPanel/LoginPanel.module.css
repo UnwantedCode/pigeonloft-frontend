@@ -14,7 +14,6 @@
 }
 .background .loginPanel {
   width: 774px;
-  height: 438px;
   background: #ffffff;
   display: flex;
   align-items: center;
@@ -27,6 +26,13 @@
   font-weight: 800;
   margin-top: 21px;
   margin-bottom: 15px;
+}
+.background .loginPanel .loginPanelError {
+  font-size: 18px;
+  font-weight: 600;
+  color: red;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .background .loginPanel .loginPanelForm {
   width: 722px;
@@ -87,6 +93,7 @@
   margin-top: 10px;
   text-align: center;
   font-weight: 500;
+  margin-bottom: 20px;
 }
 .background .loginPanel .loginPanelRegister a {
   color: #96E9C6;

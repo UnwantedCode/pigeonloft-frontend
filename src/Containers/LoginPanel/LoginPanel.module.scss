@@ -19,7 +19,7 @@
 
     .loginPanel {
         width: 774px;
-        height: 438px;
+       // height: 438px;
         background: #ffffff;
         display: flex;
         //justify-content: center;
@@ -34,6 +34,13 @@
             font-weight: 800;
             margin-top: 21px;
             margin-bottom: 15px;
+        }
+        .loginPanelError {
+            font-size: 18px;
+            font-weight: 600;
+            color: red;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         .loginPanelForm {
@@ -106,6 +113,7 @@
             margin-top: 10px;
             text-align: center;
             font-weight: 500;
+            margin-bottom: 20px;
         }
 
         .loginPanelRegister a {

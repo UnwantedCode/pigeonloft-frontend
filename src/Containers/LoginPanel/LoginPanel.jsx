@@ -1,5 +1,5 @@
 // create login panel
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useCookies} from "react-cookie";
 import {Link, Navigate} from "react-router-dom";
 
@@ -29,17 +29,16 @@ function LoginPanel() {
         });
     }
 
-
     const handleLogin = (e) => {
         e.preventDefault();
 
         if (!email || !password) {
-            setError("All fields are required");
+            setError("Uzupełnij wszystkie pola");
             return;
         }
         // if email is not valid
-        if (!email.includes("@")) {
-            setError("Email is not valid");
+        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+            setError("Adres email jest nieprawidłowy");
             return;
         }
         // fetch email and password and get token
@@ -54,7 +53,8 @@ function LoginPanel() {
                 if (response.ok) {
                     return response.json();
                 }
-                throw new Error("Login failed");
+                setError("Błąd logowania");
+                throw new Error("Błąd logowania");
             })
             .then((data) => {
                 const token = data.token;
@@ -74,6 +74,7 @@ function LoginPanel() {
             <div className={styles.background}>
                 <div className={styles.loginPanel}>
                     <h1 className={styles.loginPanelTitle}>Logowanie</h1>
+                    {error && <div className={styles.loginPanelError}>{error}</div>}
                     <form className={styles.loginPanelForm} onSubmit={handleLogin}>
                         <label className={styles.inputWraper}>
                             <p className={styles.inputTitle}>
@@ -102,7 +103,7 @@ function LoginPanel() {
                     </form>
                     <div className={styles.loginPanelRegister}>Nie masz konta? <Link to={'/rejestracja'}>Zarejestruj
                         się</Link></div>
-                    {error && <p>{error}</p>}
+
                 </div>
             </div>
         </>
