@@ -1,4 +1,4 @@
-.background {
+#appContent {
   background-image: url(../../assets/images/login_register/login_register_background.jpg);
   background-size: cover;
   background-position: center;
@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
 }
-.background .registerPanel {
+#appContent .registerPanel {
   width: 774px;
   height: 530px;
   background: #ffffff;
@@ -22,20 +22,20 @@
   border-radius: 40px;
   border: #000000 1px solid;
 }
-.background .registerPanel .registerPanelTitle {
+#appContent .registerPanel .registerPanelTitle {
   font-size: 40px;
   font-weight: 800;
   margin-top: 21px;
   margin-bottom: 15px;
 }
-.background .registerPanel .registerPanelForm {
+#appContent .registerPanel .registerPanelForm {
   width: 722px;
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: space-between;
 }
-.background .registerPanel .registerPanelForm .inputWraper {
+#appContent .registerPanel .registerPanelForm .inputWraper {
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -43,14 +43,14 @@
   width: 671px;
   margin-bottom: 8px;
 }
-.background .registerPanel .registerPanelForm .inputWraper .inputTitle {
+#appContent .registerPanel .registerPanelForm .inputWraper .inputTitle {
   font-size: 18px;
   font-weight: 600;
   text-align: left;
   align-self: flex-start;
   margin: 14px 0 5px 0;
 }
-.background .registerPanel .registerPanelForm .inputWraper .input {
+#appContent .registerPanel .registerPanelForm .inputWraper .input {
   border: 1px solid #EFEFEF;
   border-radius: 20px;
   padding: 0 15px;
@@ -64,10 +64,10 @@
   line-height: normal;
   width: 100%;
 }
-.background .registerPanel .registerPanelForm .inputWraper .input:hover {
+#appContent .registerPanel .registerPanelForm .inputWraper .input:hover {
   border-color: #888;
 }
-.background .registerPanel .registerPanelForm .inputWraperInvalid {
+#appContent .registerPanel .registerPanelForm .inputWraperInvalid {
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -75,7 +75,7 @@
   width: 671px;
   margin-bottom: 8px;
 }
-.background .registerPanel .registerPanelForm .inputWraperInvalid .inputTitle {
+#appContent .registerPanel .registerPanelForm .inputWraperInvalid .inputTitle {
   color: #a00;
   font-size: 18px;
   font-weight: 600;
@@ -83,7 +83,7 @@
   align-self: flex-start;
   margin: 14px 0 5px 0;
 }
-.background .registerPanel .registerPanelForm .inputWraperInvalid .input {
+#appContent .registerPanel .registerPanelForm .inputWraperInvalid .input {
   border: 1px solid #EFEFEF;
   border-radius: 20px;
   padding: 0 15px;
@@ -98,7 +98,7 @@
   width: 100%;
   border-color: #a00;
 }
-.background .registerPanel .registerPanelForm .registerPanelButton {
+#appContent .registerPanel .registerPanelForm .registerPanelButton {
   margin-top: 20px;
   width: 308px;
   height: 61px;
@@ -111,7 +111,7 @@
   font-weight: 800;
   transition: 0.3s;
 }
-.background .registerPanel .registerPanelForm .registerPanelButton:hover {
+#appContent .registerPanel .registerPanelForm .registerPanelButton:hover {
   background-color: #6962AD;
 }
 

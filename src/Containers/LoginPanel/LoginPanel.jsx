@@ -1,34 +1,15 @@
-// create login panel
-import {useEffect, useState} from "react";
-import {useCookies} from "react-cookie";
-import {Link, Navigate} from "react-router-dom";
+import {useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 
 import styles from './LoginPanel.module.css'
 import {Helmet} from "react-helmet-async";
-
+import {useAuth} from "@/Components/Auth/Auth.jsx";
 function LoginPanel() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-
-    // set cookie jwt name as varible
-    const jwtCookieName = "jwtToken";
-    const [cookie, setCookie] = useCookies([jwtCookieName]);
-    if (cookie.jwtToken) {
-        return <Navigate to="/" replace/>;
-    }
-    const saveJwtToken = (token) => {
-        let tokenValue = 'Bearer ' + token;
-        let tokenData = JSON.parse(atob(token.split('.')[1]));
-        let expTime = tokenData.exp;
-        let maxAge = expTime - Math.floor(Date.now() / 1000);
-        setCookie(jwtCookieName, tokenValue, {
-            path: "/",
-            maxAge: maxAge,
-            sameSite: true,
-        });
-    }
-
+    const { saveJwtToken } = useAuth();
+    const navigate = useNavigate();
     const handleLogin = (e) => {
         e.preventDefault();
 
@@ -36,12 +17,10 @@ function LoginPanel() {
             setError("Uzupełnij wszystkie pola");
             return;
         }
-        // if email is not valid
         if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
             setError("Adres email jest nieprawidłowy");
             return;
         }
-        // fetch email and password and get token
         fetch("/api/login", {
             method: "POST",
             body: JSON.stringify({email, password}),
@@ -59,9 +38,11 @@ function LoginPanel() {
             .then((data) => {
                 const token = data.token;
                 saveJwtToken(token);
+                //redirect to main page
+                navigate('/'); // Przekierowanie na główną stronę
             })
             .catch((error) => {
-                setError(error.message);
+                setError('xxxx' +error.message);
             });
 
     };
@@ -71,7 +52,7 @@ function LoginPanel() {
             <Helmet>
                 <title>Logowanie</title>
             </Helmet>
-            <div className={styles.background}>
+            <div id={styles.appContent}>
                 <div className={styles.loginPanel}>
                     <h1 className={styles.loginPanelTitle}>Logowanie</h1>
                     {error && <div className={styles.loginPanelError}>{error}</div>}

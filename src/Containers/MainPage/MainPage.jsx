@@ -10,7 +10,7 @@ function MainPage() {
             <Helmet>
                 <title>Strona glówna</title>
             </Helmet>
-            <div className={styles.mainWrapper}>
+            <div id={styles.appContent}>
                 <div className={styles.mainPageContainer}>
                     <p className={styles.title}>
                         NASZE 3 NAJLEPSZE GRY

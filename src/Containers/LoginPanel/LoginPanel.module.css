@@ -1,4 +1,4 @@
-.background {
+#appContent {
   background-image: url(../../assets/images/login_register/login_register_background.jpg);
   background-size: cover;
   background-position: center;
@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
 }
-.background .loginPanel {
+#appContent .loginPanel {
   width: 774px;
   background: #ffffff;
   display: flex;
@@ -21,27 +21,27 @@
   border-radius: 40px;
   border: #000000 1px solid;
 }
-.background .loginPanel .loginPanelTitle {
+#appContent .loginPanel .loginPanelTitle {
   font-size: 40px;
   font-weight: 800;
   margin-top: 21px;
   margin-bottom: 15px;
 }
-.background .loginPanel .loginPanelError {
+#appContent .loginPanel .loginPanelError {
   font-size: 18px;
   font-weight: 600;
   color: red;
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.background .loginPanel .loginPanelForm {
+#appContent .loginPanel .loginPanelForm {
   width: 722px;
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: space-between;
 }
-.background .loginPanel .loginPanelForm .inputWraper {
+#appContent .loginPanel .loginPanelForm .inputWraper {
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -49,14 +49,14 @@
   width: 671px;
   margin-bottom: 8px;
 }
-.background .loginPanel .loginPanelForm .inputWraper .inputTitle {
+#appContent .loginPanel .loginPanelForm .inputWraper .inputTitle {
   font-size: 18px;
   font-weight: 600;
   text-align: left;
   align-self: flex-start;
   margin: 14px 0 5px 0;
 }
-.background .loginPanel .loginPanelForm .inputWraper .input {
+#appContent .loginPanel .loginPanelForm .inputWraper .input {
   border: 1px solid #EFEFEF;
   border-radius: 20px;
   padding: 0 15px;
@@ -70,10 +70,10 @@
   line-height: normal;
   width: 100%;
 }
-.background .loginPanel .loginPanelForm .inputWraper .input:hover {
+#appContent .loginPanel .loginPanelForm .inputWraper .input:hover {
   border-color: #888;
 }
-.background .loginPanel .loginPanelForm .loginPanelButton {
+#appContent .loginPanel .loginPanelForm .loginPanelButton {
   margin-top: 20px;
   width: 308px;
   height: 61px;
@@ -86,22 +86,22 @@
   font-weight: 800;
   transition: 0.3s;
 }
-.background .loginPanel .loginPanelForm .loginPanelButton:hover {
+#appContent .loginPanel .loginPanelForm .loginPanelButton:hover {
   background-color: #6962AD;
 }
-.background .loginPanel .loginPanelRegister {
+#appContent .loginPanel .loginPanelRegister {
   margin-top: 10px;
   text-align: center;
   font-weight: 500;
   margin-bottom: 20px;
 }
-.background .loginPanel .loginPanelRegister a {
+#appContent .loginPanel .loginPanelRegister a {
   color: #96E9C6;
   text-decoration: none;
   font-weight: 700;
   transition: 0.3s;
 }
-.background .loginPanel .loginPanelRegister a:hover {
+#appContent .loginPanel .loginPanelRegister a:hover {
   color: #6962AD;
 }
 

@@ -1,6 +1,5 @@
 import  {useState} from "react";
-import {useCookies} from "react-cookie";
-import {Navigate,  useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import styles from './RegisterPanel.module.css'
 import {Helmet} from "react-helmet-async";
 
@@ -18,15 +17,6 @@ function RegisterPanel() {
     const [errorEmail, setErrorEmail] = useState("");
     const [errorPassword, setErrorPassword] = useState("");
     const [errorConfirmPassword, setErrorConfirmPassword] = useState("");
-
-    const jwtCookieName = "jwtToken";
-    const [cookie, setCookie] = useCookies([jwtCookieName]);
-    // redirect to home page if user is logged in
-    if (cookie.jwtToken) {
-        return <Navigate to="/" replace />;
-    }
-
-
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -105,7 +95,7 @@ function RegisterPanel() {
             <Helmet>
                 <title>Rejestracja</title>
             </Helmet>
-            <div className={styles.background}>
+            <div id={styles.appContent}>
                 <div className={styles.registerPanel}>
                     <h1 className={styles.registerPanelTitle}>Rejestracja</h1>
                     <form className={styles.registerPanelForm} onSubmit={handleRegister}>
