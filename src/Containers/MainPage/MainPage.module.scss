@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100%;
+    flex: 1;
 
     .mainPageContainer {
         display: flex;
@@ -15,13 +15,12 @@
             font-size: 64px;
             font-style: normal;
             font-weight: 800;
-            line-height: 0.8;
+            line-height: 0.9;
             margin: 30px 0 0 40px;
         }
 
         .gradientWraper {
             height: 575px;
-            //height: 670px;
             .gradientContainer {
                 background-image: url(../../assets/images/login_register/login_register_background.jpg);
                 background-size: cover;
@@ -30,23 +29,121 @@
                 width: 1270px;
                 height: 422px;
                 padding: 34px 34px 0;
-                //padding: 89px 34px 0;
                 display: flex;
                 justify-content: space-between;
 
                 .cart {
+                    cursor: pointer;
                     height: 540px;
-                    //height: 610px;
+                    display: flex;
+                    flex-direction: column;
                     width: 380px;
-                    border-radius: 40px;
+                    border-radius: 40px !important;
                     background: radial-gradient(60.63% 27.52% at 48.46% 107.3%, #83C0C1 0%, #FFF 95.37%);
                     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+                    transition: transform 0.3s ease;
+                    will-change: transform;
+
+                    .cartTop {
+                        border-top-left-radius: 40px;
+                        border-top-right-radius: 40px;
+                        position: relative;
+                        overflow: hidden;
+                        display: flex;
+                        height: 260px;
+
+                        .circle {
+                            width: 328px;
+                            height: 328px;
+                            mix-blend-mode: darken;
+                            flex-shrink: 0;
+                            border-radius: 50%;
+                            .circleImg {
+                                width: 85%;
+                                height: 78%;
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                            }
+                        }
+                    }
+                    .cartBottom {
+                        height: 280px;
+                        margin-top: -30px;
+                        align-items: center;
+                        display: flex;
+                        justify-content: center;
+                        .cartTitle {
+                            font-family: "Plus Jakarta Sans";
+                            font-size: 55px;
+                            font-weight: 200;
+                            text-align: center;
+                            b{
+                                font-weight: 500;
+
+                            }
+
+                        }
+
+                    }
+
+                }
+                .cart:hover {
+                    transform: scale(1.07);
                 }
 
-                //cart even
                 .cart:nth-child(even) {
                     background: radial-gradient(60.63% 27.52% at 48.46% 107.3%, #96E9C6 0%, #FFF 95.37%);
                 }
+
+                .peter {
+                    .cartTop {
+                        .circle {
+                            background: radial-gradient(144.37% 144.37% at 50% -44.37%, #FFF 0%, #83C0C1 100%);
+                            transform: translate(-4%, -22%);
+                            .circleImg {
+                                margin-top: 25%;
+                                margin-left: 18%;
+                                width: 65%;
+                                background-image: url(../../assets/images/main_page/peter.png);
+                            }
+                        }
+                    }
+                }
+
+                .checkers {
+                    .cartTop {
+                        justify-content: center;
+
+                        .circle {
+                            background: radial-gradient(144.37% 144.37% at 50% -44.37%, #FFF 0%, #96E9C6 100%);;
+                            transform: translate(0, -22%);
+                            .circleImg {
+                                margin-top: 22%;
+                                margin-left: 6%;
+                                background-image: url(../../assets/images/main_page/checkers.png);
+                            }
+                        }
+                    }
+                }
+
+                .rockPaperScissors {
+                    .cartTop {
+                        justify-content: center;
+
+                        .circle {
+                            background: radial-gradient(144.37% 144.37% at 50% -44.37%, #FFF 0%, #83C0C1 100%);
+                            transform: translate(15%, -22%);
+                            .circleImg {
+                                margin-top: 22%;
+                                margin-left: 4%;
+                                background-image: url(../../assets/images/main_page/rock_paper_scissors.png);
+                            }
+                        }
+                    }
+                }
+
+
             }
         }
 
@@ -61,7 +158,6 @@
             .bottomTitleBold {
                 color: #96E9C6;
                 font-weight: 800;
-                // left margin one space
                 margin-left: 10px;
             }
 

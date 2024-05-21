@@ -1,4 +1,5 @@
 #appContent {
+  flex: 1;
   background-image: url(../../assets/images/login_register/login_register_background.jpg);
   background-size: cover;
   background-position: center;
@@ -7,7 +8,6 @@
   margin-bottom: -50px;
   padding-bottom: 50px;
   width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,6 +1,5 @@
 import styles from "./MainPage.module.css";
 
-import bigImage from "../../assets/images/main-page-logo.png";
 import {Helmet} from "react-helmet-async";
 
 //show big image and some text under it
@@ -13,17 +12,49 @@ function MainPage() {
             <div id={styles.appContent}>
                 <div className={styles.mainPageContainer}>
                     <p className={styles.title}>
-                        NASZE 3 NAJLEPSZE GRY
+                        NASZE 3 GRY
                     </p>
                     <div className={styles.gradientWraper}>
                         <div className={styles.gradientContainer}>
-                            <div className={styles.cart}></div>
-                            <div className={styles.cart}></div>
-                            <div className={styles.cart}></div>
+                            <div className={styles.cart + ' ' + styles.peter}>
+
+                                <div className={styles.cartTop}>
+                                    <div className={styles.circle}>
+                                        <div className={styles.circleImg}></div>
+                                    </div>
+                                </div>
+                                <div className={styles.cartBottom}>
+                                    <div className={styles.cartTitle}><b>PIOTRUŚ</b></div>
+                                    {/*PIOTRUŚ*/}
+                                </div>
+
+                            </div>
+                            <div className={styles.cart + ' ' + styles.checkers}>
+
+                                <div className={styles.cartTop}>
+                                    <div className={styles.circle}>
+                                        <div className={styles.circleImg}></div>
+                                    </div>
+                                </div>
+                                <div className={styles.cartBottom}>
+                                    <div className={styles.cartTitle}><b>WARCABY</b></div>
+                                </div>
+                            </div>
+                            <div className={styles.cart + ' ' + styles.rockPaperScissors}>
+
+                                <div className={styles.cartTop}>
+                                    <div className={styles.circle}><div className={styles.circleImg}></div></div>
+                                </div>
+                                <div className={styles.cartBottom}>
+                                    <div className={styles.cartTitle}><b>KAMIEŃ</b> PAPIER <b>NOŻYCE</b></div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
-                    <div className={styles.bottomTitle}>NA CO CZEKASZ?<div className={styles.bottomTitleBold}>ZAGRAJ JUŻ TERAZ</div></div>
+                    <div className={styles.bottomTitle}>NA CO CZEKASZ?
+                        <div className={styles.bottomTitleBold}>ZAGRAJ JUŻ TERAZ</div>
+                    </div>
                 </div>
             </div>
         </>
