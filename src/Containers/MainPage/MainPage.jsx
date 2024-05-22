@@ -1,6 +1,7 @@
 import styles from "./MainPage.module.css";
 
 import {Helmet} from "react-helmet-async";
+import {Link} from "react-router-dom";
 
 //show big image and some text under it
 function MainPage() {
@@ -16,7 +17,8 @@ function MainPage() {
                     </p>
                     <div className={styles.gradientWraper}>
                         <div className={styles.gradientContainer}>
-                            <div className={styles.cart + ' ' + styles.peter}>
+                            <Link to={'/pokoje'} >
+                                <div className={styles.cart + ' ' + styles.peter}>
 
                                 <div className={styles.cartTop}>
                                     <div className={styles.circle}>
@@ -29,6 +31,8 @@ function MainPage() {
                                 </div>
 
                             </div>
+                            </Link>
+                            <Link to={'/pokoje'} >
                             <div className={styles.cart + ' ' + styles.checkers}>
 
                                 <div className={styles.cartTop}>
@@ -40,6 +44,8 @@ function MainPage() {
                                     <div className={styles.cartTitle}><b>WARCABY</b></div>
                                 </div>
                             </div>
+                            </Link>
+                            <Link to={'/pokoje'} >
                             <div className={styles.cart + ' ' + styles.rockPaperScissors}>
 
                                 <div className={styles.cartTop}>
@@ -49,7 +55,7 @@ function MainPage() {
                                     <div className={styles.cartTitle}><b>KAMIEŃ</b> PAPIER <b>NOŻYCE</b></div>
                                 </div>
                             </div>
-
+                            </Link>
                         </div>
                     </div>
                     <div className={styles.bottomTitle}>NA CO CZEKASZ?

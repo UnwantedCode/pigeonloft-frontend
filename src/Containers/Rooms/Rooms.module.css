@@ -1,0 +1,62 @@
+#appContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+}
+#appContent .mainPageContainer {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  max-width: 1270px;
+}
+#appContent .mainPageContainer .topContainer {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+#appContent .mainPageContainer .topContainer .title {
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 0.9;
+  margin: 30px 0 0 40px;
+}
+#appContent .mainPageContainer .topContainer .addRoomContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 40px;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: 0.5s;
+  position: relative;
+}
+#appContent .mainPageContainer .topContainer .addRoomContainer .addRoomButton {
+  display: flex;
+  align-items: center;
+  height: 46px;
+  background: linear-gradient(180deg, #7691b7, #8186b6, #8080b5, #8185b6, #7690b7);
+  border: none;
+  border-radius: 30px;
+  color: white;
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Dodanie cienia */
+  transition: transform 0.3s ease;
+}
+#appContent .mainPageContainer .topContainer .addRoomContainer .addRoomButton:hover {
+  transform: scale(1.07);
+}
+#appContent .mainPageContainer .border {
+  height: 10px;
+  background: linear-gradient(180deg, #7691b7, #8186b6, #8080b5, #8185b6, #7690b7);
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/*# sourceMappingURL=Rooms.module.css.map */

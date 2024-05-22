@@ -43,6 +43,7 @@ body {
 a {
   outline: 0;
   text-decoration: unset;
+  color: inherit;
 }
 
 a:hover,

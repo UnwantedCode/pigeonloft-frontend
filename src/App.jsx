@@ -9,6 +9,7 @@ import Footer from "@/Containers/Footer/Footer.jsx";
 import {HelmetProvider} from "react-helmet-async";
 import {PrivateRoute, PublicRoute} from "@/Components/Auth/Auth.jsx";
 import Logout from "@/Containers/Logout/Logout.jsx";
+import Rooms from "@/Containers/Rooms/Rooms.jsx";
 
 
 
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/rejestracja" element={<PublicRoute><RegisterPanel /></PublicRoute>} />
                 <Route path="/gaming-rooms" element={<PrivateRoute><GamingRooms /></PrivateRoute>} />
                 <Route path="/wylogowanie" element={<PrivateRoute><Logout /></PrivateRoute>} />
+                <Route path="/pokoje" element={<PublicRoute><Rooms /></PublicRoute>} />
 
             </Routes>
             <Footer />
