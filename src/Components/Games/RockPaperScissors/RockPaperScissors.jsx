@@ -4,7 +4,7 @@ import styles from "./RockPaperScissors.module.css";
 import rockImage from '@/assets/images/games/rock_paper_scissors/rock.png'; // Import zdjęcia skały
 import paperImage from '@/assets/images/games/rock_paper_scissors/paper.png'; // Import zdjęcia skały
 import scissorsImage from '@/assets/images/games/rock_paper_scissors/scissors.png';
-import {useState} from "react"; // Import zdjęcia skały
+import {useEffect, useState} from "react"; // Import zdjęcia skały
 function RockPaperScissors() {
 
     const [myChoice, setMyChoice] = useState(null);
@@ -15,6 +15,7 @@ function RockPaperScissors() {
     const [countdown, setCountdown] = useState(null);
     const [gameStarted, setGameStarted] = useState(false);
     const [turnEnded, setTurnEnded] = useState(false);
+    const [showPopup, setShowPopup] = useState(true);
 
     const choices = [
         { name: 'paper', image: paperImage },
@@ -40,6 +41,7 @@ function RockPaperScissors() {
                     determineWinner(myChoice, enemyChoice);
                     setGameStarted(false);
                     setTurnEnded(false);
+
                     return null;
                 }
                 return prevCountdown - 1;
@@ -65,6 +67,15 @@ function RockPaperScissors() {
             setResult('Przeciwnik zdobywa punkt!');
             setEnemyScore(enemyScore + 1);
         }
+
+        if (myScore === 4) {
+            endGame();
+            setResult('WYGRAŁEŚ!!!');
+        }
+        if (enemyScore === 4) {
+            endGame();
+            setResult('PRZEGRAŁEŚ!!!');
+        }
     };
 
     const resetGame = () => {
@@ -74,11 +85,42 @@ function RockPaperScissors() {
         setCountdown(null);
     };
 
+    const endGame = () => {
+        resetGame()
+        setMyScore(0);
+        setEnemyScore(0);
+    }
+
+    const closePopup = () => {
+        setShowPopup(false);
+    };
+
+    const handlePopupClick = (e) => {
+        if (e.target === e.currentTarget) {
+            closePopup();
+        }
+    };
+
+    useEffect(() => {
+        setShowPopup(true);
+    }, []);
+
     return (
         <>
             <Helmet>
                 <title>KPN</title>
             </Helmet>
+            {showPopup && (
+                <div className={styles.popupOverlay} onClick={handlePopupClick}>
+                    <div className={styles.popup}>
+                        <button className={styles.closeButton} onClick={closePopup}>✖</button>
+                        <h2>Zasady gry</h2>
+                        <p>W grze "papier, kamień, nożyce"...</p>
+                        <p>Papier pokonuje kamień, kamień pokonuje nożyce, a nożyce pokonują papier.</p>
+                        <p>Zdobądź 5 punktów i WYGRAJ!!!</p>
+                    </div>
+                </div>
+            )}
             <div className={styles.gameWrapper}>
                 <div className={styles.top}>
                     <div id={styles.scoreContainer} className={styles.scoreContainer}>
