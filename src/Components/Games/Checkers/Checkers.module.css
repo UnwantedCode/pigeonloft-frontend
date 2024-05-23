@@ -1,0 +1,59 @@
+.gameWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  width: 873px;
+  height: 783px;
+  border-radius: 40px;
+  background: #FFF;
+}
+.gameWrapper .board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 650px;
+  height: 650px;
+  border: 2px solid #333;
+  border-radius: 40px;
+  background-color: #fff;
+  margin: 20px auto;
+  position: relative;
+}
+.gameWrapper .board .square {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gameWrapper .board .square .piece {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  cursor: grab;
+}
+.gameWrapper .board .square .piece:active {
+  cursor: grabbing;
+  opacity: 1 !important;
+}
+.gameWrapper .board .light {
+  background-color: #fff;
+}
+.gameWrapper .board .dark {
+  background-color: #2C2C2C;
+}
+.gameWrapper .board .square0 {
+  border-top-left-radius: 40px;
+}
+.gameWrapper .board .square7 {
+  border-top-right-radius: 40px;
+}
+.gameWrapper .board .square56 {
+  border-bottom-left-radius: 40px;
+}
+.gameWrapper .board .square63 {
+  border-bottom-right-radius: 40px;
+}
+
+/*# sourceMappingURL=Checkers.module.css.map */

@@ -30,6 +30,11 @@ function App() {
                 <Route path="/wylogowanie" element={<PrivateRoute><Logout /></PrivateRoute>} />
                 <Route path="/pokoje" element={<PublicRoute><Rooms /></PublicRoute>} />
                 <Route path="/gra" element={<PublicRoute><Game /></PublicRoute>} />
+                <Route path="/gra/kpn" element={<PublicRoute><Game /></PublicRoute>} />
+                <Route path="/gra/warcaby" element={<PublicRoute><Game /></PublicRoute>} />
+                <Route path="/gra/piotrus" element={<PublicRoute><Game /></PublicRoute>} />
+
+                <Route path="*" element={<MainPage />} />
 
             </Routes>
             <Footer />

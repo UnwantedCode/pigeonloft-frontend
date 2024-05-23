@@ -1,0 +1,12 @@
+.gameWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  width: 873px;
+  height: 783px;
+  border-radius: 40px;
+  background: #FFF;
+}
+
+/*# sourceMappingURL=LittlePeter.module.css.map */

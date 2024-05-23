@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./RoomElement.module.css";
+import {Link} from "react-router-dom";
 
 function RoomElement(props) {
     console.log(props)
@@ -16,9 +17,10 @@ function RoomElement(props) {
                 </div>
                 <div className={styles.right}>
                     <div className={styles.numbersPersons}>{props.room.numbersPersons}/{props.room.maxPersons}</div>
-                    <div className={styles.button}>
+
+                    <Link to={props.room.url} className={styles.button}>
                         DOŁĄCZ
-                        </div>
+                    </Link>
                 </div>
 
             </div>

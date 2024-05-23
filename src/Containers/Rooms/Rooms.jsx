@@ -10,32 +10,38 @@ function Rooms() {
             name: 'Papier kamień nożyce',
             numbersPersons: 1,
             maxPersons: 2,
+            url: '/gra/kpn'
         },
         {
             id: 101,
-            name: 'Papier kamień nożyce',
+            name: 'Warcaby',
             numbersPersons: 1,
             maxPersons: 2,
+            url: '/gra/warcaby'
         }, {
             id: 102,
-            name: 'Papier kamień nożyce',
+            name: 'Piotruś',
             numbersPersons: 1,
             maxPersons: 2,
+            url: '/gra/piotrus'
         }, {
             id: 103,
             name: 'Papier kamień nożyce',
             numbersPersons: 1,
             maxPersons: 2,
+            url: '/gra/kpn'
         }, {
             id: 104,
             name: 'Papier kamień nożyce',
             numbersPersons: 1,
             maxPersons: 2,
+            url: '/gra/kpn'
         }, {
             id: 105,
             name: 'Papier kamień nożyce',
             numbersPersons: 2,
             maxPersons: 2,
+            url: '/gra/kpn'
         }
     ];
 
