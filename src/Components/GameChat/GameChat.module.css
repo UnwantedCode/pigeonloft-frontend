@@ -1,0 +1,141 @@
+@charset "UTF-8";
+.chat {
+  display: flex;
+  flex-direction: column;
+  width: 378px;
+  height: 783px;
+  border-radius: 40px;
+  background: #FFF;
+  box-shadow: 0px 5px 25px 5px rgba(0, 0, 0, 0.25);
+}
+.chat .chatHeader {
+  margin-top: 34px;
+  display: flex;
+  flex-direction: column;
+}
+.chat .chatHeader .chatHeaderLeft .chatHeaderText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 238px;
+  height: 58px;
+  flex-shrink: 0;
+  border-radius: 0px 40px 40px 0px;
+  background: #6C22A6;
+  color: #FFF;
+  font-size: 24px;
+  font-weight: 500;
+}
+.chat .chatHeader .chatHeaderRight {
+  margin-top: 20px;
+  display: flex;
+  justify-content: end;
+}
+.chat .chatHeader .chatHeaderRight .chatHeaderText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 238px;
+  height: 58px;
+  flex-shrink: 0;
+  border-radius: 40px 0 0 40px;
+  background: #96E9C6;
+  color: #FFF;
+  font-size: 24px;
+  font-weight: 500;
+}
+.chat .chatContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Wyśrodkowanie elementów w poziomie */
+  margin-top: 33px;
+  width: 378px;
+  height: 580px;
+  flex-shrink: 0;
+  border-radius: 40px;
+  background: #FFF;
+  box-shadow: 0px 20px 100px 47px rgba(0, 0, 0, 0.1);
+}
+.chat .chatContent .chatMessages {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto; /* Dodaje paski przewijania, gdy zawartość jest zbyt duża */
+  flex-grow: 1; /* Rozciąga kontener, aby wypełnić dostępną przestrzeń */
+  width: 100%;
+  max-width: 100%;
+  word-break: break-word; /* Dodane, aby łamać długie słowa */
+  /* Ukrywa pasek przewijania w przeglądarkach Webkit (np. Chrome, Safari) */
+  /* Ukrywa pasek przewijania w przeglądarkach Firefox */
+  scrollbar-width: none;
+}
+.chat .chatContent .chatMessages ::-webkit-scrollbar {
+  display: none;
+}
+.chat .chatContent .chatMessages .chatMessageMy {
+  padding: 7px;
+  align-self: flex-start;
+  position: relative;
+  margin-bottom: 10px;
+  border-left: 7px solid #96E9C6;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+.chat .chatContent .chatMessages .chatMessageMy .chatMessageText {
+  border-radius: 20px;
+  padding: 10px;
+  display: inline-block;
+  max-width: 90%;
+  position: relative;
+}
+.chat .chatContent .chatMessages .chatMessageEnemy {
+  padding: 7px;
+  align-self: flex-end;
+  border-right: 7px solid #6C22A6;
+  text-align: right;
+  margin-bottom: 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.chat .chatContent .chatMessages .chatMessageEnemy .chatMessageText {
+  border-radius: 20px;
+  padding: 10px;
+  display: inline-block;
+  max-width: 90%;
+  position: relative;
+}
+.chat .chatContent .chatInput {
+  display: flex;
+  align-items: flex-start; /* Zmienia wyrównanie na górę, aby textarea mogła rosnąć w dół */
+  width: 345px;
+  min-height: 90px; /* Ustawia minimalną wysokość */
+  max-height: 200px; /* Ustawia maksymalną wysokość */
+  flex-shrink: 0;
+  border-radius: 40px;
+  background: #fff;
+  box-shadow: 0px 20px 86.5px -4px rgba(0, 0, 0, 0.2);
+  position: relative; /* Umożliwia poprawne pozycjonowanie pseudoelementów */
+  overflow: hidden; /* Aby pseudo-elementy nie wychodziły poza przycisk */
+  padding: 20px;
+  margin-bottom: 17px;
+}
+.chat .chatContent .chatInput .chatInputText {
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  resize: none; /* Usuwa możliwość ręcznego zmieniania rozmiaru przez użytkownika */
+  overflow: hidden; /* Ukrywa paski przewijania */
+  font-size: 16px;
+  min-height: 46px; /* Ustawia minimalną wysokość */
+  max-height: 200px; /* Ustawia maksymalną wysokość */
+}
+.chat .chatContent .chatInput .chatInputButton {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 10px;
+  cursor: pointer;
+  align-self: flex-end; /* Ustawia przycisk na dole kontenera */
+}
+
+/*# sourceMappingURL=GameChat.module.css.map */

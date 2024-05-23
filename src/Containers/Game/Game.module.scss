@@ -1,0 +1,24 @@
+#appContent {
+    background-size: cover;
+    background-position: center;
+    background: linear-gradient(90deg, #6962AD -3.13%, #6C22A6 16.95%, #6C22A6 80.59%, #6962AD 103.79%);;
+    margin-top: -50px;
+    padding-top: 50px;
+    margin-bottom: -50px;
+    padding-bottom: 50px;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .wrapper{
+        width: 1270px;
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+
+
+}

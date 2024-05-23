@@ -1,0 +1,11 @@
+.gameWraper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 873px;
+  height: 783px;
+  border-radius: 40px;
+  background: #FFF;
+}
+
+/*# sourceMappingURL=RockPaperScissors.module.css.map */
