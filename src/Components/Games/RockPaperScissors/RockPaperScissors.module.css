@@ -1,11 +1,168 @@
-.gameWraper {
+.gameWrapper {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: column;
   width: 873px;
   height: 783px;
   border-radius: 40px;
   background: #FFF;
+}
+.gameWrapper .top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.gameWrapper .top .scoreContainer {
+  margin-top: 34px;
+  display: flex;
+  justify-content: center;
+  align-content: start;
+  width: 100%;
+}
+.gameWrapper .top .scoreContainer .score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 80px;
+  border-radius: 40px;
+  font-size: 30px;
+}
+.gameWrapper .top .scoreContainer .myScore {
+  background: #6C22A6;
+  margin-right: 10px;
+  color: #FFF;
+}
+.gameWrapper .top .scoreContainer .enemyScore {
+  background: #96E9C6;
+}
+.gameWrapper .top .result {
+  font-size: 30px;
+  margin-top: 20px;
+}
+.gameWrapper .middle {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+.gameWrapper .middle .table {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 533px;
+  height: 309px;
+  border-radius: 40px;
+}
+.gameWrapper .middle .table .myContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 225px;
+  height: 225px;
+  flex-shrink: 0;
+  border-radius: 40px;
+  border: 14px solid #FFF;
+  background: #6C22A6;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 200px;
+  font-weight: 800;
+  z-index: 1;
+}
+.gameWrapper .middle .table .myContainer img {
+  width: 147.296px;
+  height: 161px;
+}
+.gameWrapper .middle .table .enemyContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 225px;
+  height: 225px;
+  flex-shrink: 0;
+  border-radius: 40px;
+  border: 14px solid #FFF;
+  background: #96E9C6;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 200px;
+  font-weight: 800;
+  z-index: 1;
+}
+.gameWrapper .middle .table .enemyContainer img {
+  width: 147.296px;
+  height: 161px;
+}
+.gameWrapper .middle .table .blankContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 225px;
+  height: 225px;
+  flex-shrink: 0;
+  border-radius: 40px;
+  border: 14px solid #96E9C6;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.gameWrapper .middle .table .blankContainer .text {
+  color: #96E9C6;
+  text-align: center;
+  font-size: 200px;
+  font-weight: 800;
+  z-index: 1;
+}
+.gameWrapper .middle .table .blankContainer img {
+  width: 147.296px;
+  height: 161px;
+}
+.gameWrapper .middle .buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.gameWrapper .middle .buttonContainer .button {
+  width: 300px;
+  height: 50px;
+  border-radius: 40px;
+  background: #6C22A6;
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+  z-index: 1;
+}
+.gameWrapper .bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 227px;
+  border-radius: 40px;
+  background: #FFF;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+.gameWrapper .bottom .buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 605px;
+  height: 100%;
+}
+.gameWrapper .bottom .buttonContainer .button {
+  width: 185px;
+  height: 150px;
+  border-radius: 40px;
+  background: #6C22A6;
+}
+.gameWrapper .bottom .buttonContainer .button img {
+  width: 125.612px;
+  height: 139px;
 }
 
 /*# sourceMappingURL=RockPaperScissors.module.css.map */

@@ -1,11 +1,182 @@
-.gameWraper{
+.gameWrapper {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    flex-direction: column;
     width: 873px;
     height: 783px;
     border-radius: 40px;
     background: #FFF;
-    
+
+    .top{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        .scoreContainer{
+            margin-top: 34px;
+            display: flex;
+            justify-content: center;
+            align-content: start;
+            width: 100%;
+            .score{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100px;
+                height: 80px;
+                border-radius: 40px;
+                font-size: 30px;
+
+            }
+            .myScore{
+                background: #6C22A6;
+                margin-right: 10px;
+                color: #FFF;
+            }
+            .enemyScore{
+                background: #96E9C6;
+            }
+
+        }
+        .result{
+            font-size: 30px;
+            margin-top: 20px;
+        }
+
+    }
+
+    .middle{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        .table{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 533px;
+            height: 309px;
+            border-radius: 40px;
+            .myContainer{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 225px;
+                height: 225px;
+                flex-shrink: 0;
+                border-radius: 40px;
+                border: 14px solid #FFF;
+                background: #6C22A6;
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                color: #FFFFFF;
+                text-align: center;
+                font-size: 200px;
+                font-weight: 800;
+                z-index: 1;
+                img{
+                    width: 147.296px;
+                    height: 161px;
+                }
+            }
+            .enemyContainer{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 225px;
+                height: 225px;
+                flex-shrink: 0;
+                border-radius: 40px;
+                border: 14px solid #FFF;
+                background: #96E9C6;
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                color: #FFFFFF;
+                text-align: center;
+                font-size: 200px;
+                font-weight: 800;
+                z-index: 1;
+                img{
+                    width: 147.296px;
+                    height: 161px;
+                }
+            }
+            .blankContainer{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 225px;
+                height: 225px;
+                flex-shrink: 0;
+                border-radius: 40px;
+                border: 14px solid #96E9C6;
+                background: #ffffff;
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                .text{
+                    color: #96E9C6;
+                    text-align: center;
+                    font-size: 200px;
+                    font-weight: 800;
+                    z-index: 1;
+                }
+                img{
+                    width: 147.296px;
+                    height: 161px;
+                }
+            }
+        }
+
+        .buttonContainer{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .button {
+                width: 300px;
+                height: 50px;
+
+                border-radius: 40px;
+                background: #6C22A6;
+                color: #fff;
+                text-align: center;
+                font-size: 30px;
+                z-index: 1;
+            }
+
+        }
+    }
+
+    .bottom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 227px;
+        border-radius: 40px;
+        background: #FFF;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+
+        .buttonContainer{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 605px;
+            height: 100%;
+            //padding: 0 40px;
+            .button{
+                width: 185px;
+                height: 150px;
+                border-radius: 40px;
+                background: #6C22A6;
+                img{
+                    width: 125.612px;
+                    height: 139px;
+                }
+            }
+
+        }
+
+
+
+    }
 
 }
