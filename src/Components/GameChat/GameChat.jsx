@@ -6,6 +6,7 @@ function GameChat(props) {
     const [text, setText] = useState('');
     const [messages, setMessages] = useState([]);
     const messagesEndRef = useRef(null);
+    const textareaRef = useRef(null);
     const handleInputChange = (event) => {
         const textarea = event.target;
         textarea.style.height = 'auto'; // Resetuje wysokość
@@ -20,6 +21,7 @@ function GameChat(props) {
 
             setMessages([...messages, { text, type: type }]);
             setText('');
+            textareaRef.current.style.height = 'auto'; // Resetuje wysokość textarea
         }
     };
 
@@ -65,6 +67,7 @@ function GameChat(props) {
                     </div>
                     <div className={styles.chatInput}>
                         <textarea
+                            ref={textareaRef}
                             className={styles.chatInputText}
                             placeholder="Napisz wiadomość..."
                             value={text}
