@@ -8,16 +8,34 @@
   border-radius: 40px;
   background: #FFF;
 }
-.gameWrapper .playArea {
+.gameWrapper .enemyDeck {
   display: flex;
-  justify-content: space-between;
+  height: 200px;
+  width: 100%;
+  justify-content: center;
   align-items: center;
   position: relative;
-  margin-right: 50px;
+  padding-left: 30px;
+}
+.gameWrapper .enemyDeck .card {
+  position: absolute;
+  transition: transform 0.2s;
+  width: 100px;
+  height: 137px;
+}
+.gameWrapper .playArea {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding-left: 30px;
 }
 .gameWrapper .playArea .card {
   position: absolute;
   transition: transform 0.2s;
+  width: 117px;
+  height: 160px;
 }
 .gameWrapper .bottomArea {
   height: 269px;
@@ -52,9 +70,12 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  padding-left: 30px;
 }
 .gameWrapper .bottomArea .myDeck .card {
   position: absolute;
+  width: 117px;
+  height: 160px;
 }
 
 /*# sourceMappingURL=LittlePeter.module.css.map */

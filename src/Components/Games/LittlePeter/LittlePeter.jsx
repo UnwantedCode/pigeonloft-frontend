@@ -3,9 +3,50 @@ import styles from "./LittlePeter.module.css";
 import Card from "@/Components/Games/LittlePeter/Cart/Card.jsx";
 
 function LittlePeter() {
+    const enemyCards = [
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+        { suit: 'others', rank: 'back' },
+    ];
+
     const myCards = [
         { suit: 'spades', rank: 'a' },
         { suit: 'diamonds', rank: '10' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
+        { suit: 'spades', rank: '8' },
         { suit: 'spades', rank: '8' },
         { suit: 'spades', rank: '3' },
         { suit: 'hearts', rank: '2' },
@@ -18,6 +59,8 @@ function LittlePeter() {
         { suit: 'others', rank: 'jr' },
         { suit: 'hearts', rank: 'q' },
         { suit: 'spades', rank: 'q' },
+        { suit: 'spades', rank: 'q' },
+        { suit: 'spades', rank: 'q' },
         { suit: 'others', rank: 'jb' },
         { suit: 'others', rank: 'jr' },
         { suit: 'hearts', rank: 'q' },
@@ -28,8 +71,9 @@ function LittlePeter() {
 
 
     const offset = 30; // Odległość między kartami
-    const middleIndexCardsPlayed = Math.floor(cardsPlayed.length / 2);
-    const middleIndexMyCards = Math.floor(myCards.length / 2);
+    const middleIndexCardsPlayed = (cardsPlayed.length / 2);
+    const middleIndexMyCards = (myCards.length / 2);
+    const middleIndexEnemyCards = (enemyCards.length / 2);
 
     return (
         <>
@@ -38,9 +82,13 @@ function LittlePeter() {
             </Helmet>
             <div className={styles.gameWrapper}>
                 <div className={styles.enemyDeck}>
-                    {[...Array(5)].map((_, index) => (
-                        <div key={index} className={styles.cardBack}>
-
+                    {enemyCards.map((card, index) => (
+                        <div
+                            key={index}
+                            className={styles.card}
+                            style={{transform: `translateX(${(index - middleIndexEnemyCards) * offset}px)`}}
+                        >
+                            <Card suit={card.suit} rank={card.rank}/>
                         </div>
                     ))}
                 </div>
