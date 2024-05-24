@@ -1,0 +1,26 @@
+@charset "UTF-8";
+.cart {
+  width: 117px;
+  height: 160px;
+  border-radius: 10px;
+  /* Cień kart */
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s, box-shadow 0.3s; /* Dodajemy płynne przejście dla cienia */
+  will-change: transform;
+}
+.cart img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: transform 0.3s; /* Dodajemy płynne przejście do obrazka */
+}
+.cart img :hover {
+  transform: scale(1.1);
+}
+.cart :hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.5);
+}
+
+/*# sourceMappingURL=Card.module.css.map */
