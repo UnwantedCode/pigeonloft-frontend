@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .gameWrapper {
   display: flex;
   justify-content: space-between;
@@ -22,6 +23,11 @@
   transition: transform 0.2s;
   width: 100px;
   height: 137px;
+  border-radius: 10px;
+}
+.gameWrapper .enemyDeck .selected {
+  box-shadow: 0 0 10px 10px rgba(108, 34, 166, 0.85); /* Poświata fioletowa */
+  z-index: 1;
 }
 .gameWrapper .playArea {
   width: 100%;

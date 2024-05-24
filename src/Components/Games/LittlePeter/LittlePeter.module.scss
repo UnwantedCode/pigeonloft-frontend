@@ -21,6 +21,11 @@
             transition: transform 0.2s;
             width: 100px;
             height: 137px;
+            border-radius: 10px;
+        }
+        .selected {
+            box-shadow: 0 0 10px 10px rgba(108, 34, 166, 0.85); /* Poświata fioletowa */
+            z-index: 1;
         }
     }
     .playArea{

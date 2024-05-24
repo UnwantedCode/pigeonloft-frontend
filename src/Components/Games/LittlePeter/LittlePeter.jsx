@@ -1,8 +1,10 @@
 import {Helmet} from "react-helmet-async";
 import styles from "./LittlePeter.module.css";
 import Card from "@/Components/Games/LittlePeter/Cart/Card.jsx";
+import {useState} from "react";
 
 function LittlePeter() {
+    const [selectedCardIndex, setSelectedCardIndex] = useState(null);
     const enemyCards = [
         { suit: 'others', rank: 'back' },
         { suit: 'others', rank: 'back' },
@@ -26,7 +28,6 @@ function LittlePeter() {
         { suit: 'others', rank: 'back' },
         { suit: 'others', rank: 'back' },
     ];
-
     const myCards = [
         { suit: 'spades', rank: 'a' },
         { suit: 'diamonds', rank: '10' },
@@ -51,7 +52,6 @@ function LittlePeter() {
         { suit: 'spades', rank: '3' },
         { suit: 'hearts', rank: '2' },
     ];
-
     const cardsPlayed = [
         { suit: 'hearts', rank: 'q' },
         { suit: 'spades', rank: 'q' },
@@ -74,7 +74,9 @@ function LittlePeter() {
     const middleIndexCardsPlayed = (cardsPlayed.length / 2);
     const middleIndexMyCards = (myCards.length / 2);
     const middleIndexEnemyCards = (enemyCards.length / 2);
-
+    const handleCardClick = (index) => {
+        setSelectedCardIndex(index);
+    };
     return (
         <>
             <Helmet>
@@ -85,7 +87,8 @@ function LittlePeter() {
                     {enemyCards.map((card, index) => (
                         <div
                             key={index}
-                            className={styles.card}
+                            className={`${styles.card} ${selectedCardIndex === index ? styles.selected : ''}`}
+                            onClick={() => handleCardClick(index)}
                             style={{transform: `translateX(${(index - middleIndexEnemyCards) * offset}px)`}}
                         >
                             <Card suit={card.suit} rank={card.rank}/>
