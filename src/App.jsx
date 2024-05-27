@@ -28,11 +28,11 @@ function App() {
                 <Route path="/logowanie" element={<PublicRoute><LoginPanel /></PublicRoute>} />
                 <Route path="/rejestracja" element={<PublicRoute><RegisterPanel /></PublicRoute>} />
                 <Route path="/wylogowanie" element={<PrivateRoute><Logout /></PrivateRoute>} />
-                <Route path="/pokoje" element={<PublicRoute><Rooms /></PublicRoute>} />
+                <Route path="/pokoje" element={<PrivateRoute><Rooms /></PrivateRoute>} />
                 <Route path="/gra" element={<PublicRoute><Game /></PublicRoute>} />
                 <Route path="/gra/kpn" element={<PublicRoute><Game /></PublicRoute>} />
                 <Route path="/gra/warcaby" element={<PublicRoute><Game /></PublicRoute>} />
-                <Route path="/gra/piotrus" element={<PublicRoute><Game /></PublicRoute>} />
+                <Route path="/gra/piotrus/:roomId" element={<PrivateRoute><Game /></PrivateRoute>} />
 
                 <Route path="*" element={<MainPage />} />
 

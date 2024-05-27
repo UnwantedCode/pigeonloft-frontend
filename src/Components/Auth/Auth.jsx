@@ -49,7 +49,11 @@ export function useAuth() {
         removeCookie(jwtCookieName);
     };
 
-    return { isAuthenticated, decodeJwtToken, saveJwtToken, removeJwtToken };
+    const getJwtToken = () => {
+        return cookie[jwtCookieName];
+    };
+
+    return { isAuthenticated, decodeJwtToken, saveJwtToken, removeJwtToken, getJwtToken };
 }
 // Komponent dla tras dostępnych tylko dla zalogowanych użytkowników
 export function PrivateRoute({ children }) {
