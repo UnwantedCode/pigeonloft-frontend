@@ -1,7 +1,21 @@
 import React, {useEffect, useRef, useState} from "react";
 import styles from "./GameChat.module.css";
+import {useAuth} from "@/Components/Auth/Auth.jsx";
 
-function GameChat(props) {
+function GameChat({connection, backendMessages}) {
+
+    const { decodeJwtToken } = useAuth();
+    const email = decodeJwtToken()["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
+    useEffect(() => {
+        let newMessages = [];
+        backendMessages.slice(-20).forEach((message) => {
+            newMessages.push({ text: message.content, type: email === message.sender ? 'my' : 'enemy' });
+        });
+        setMessages(newMessages);
+        }, [backendMessages]);
+
+    ////////////////////
+
 
     const [text, setText] = useState('');
     const [messages, setMessages] = useState([]);
@@ -16,10 +30,10 @@ function GameChat(props) {
 
     const handleSendMessage = () => {
         if (text.trim()) {
-            // rand type
-            const type = Math.random() > 0.5 ? 'my' : 'enemy';
-
-            setMessages([...messages, { text, type: type }]);
+            if (connection) {
+                connection.invoke("SendMessage", text)
+                    .catch(err => console.error(err));
+            }
             setText('');
             textareaRef.current.style.height = 'auto'; // Resetuje wysokość textarea
         }
@@ -34,6 +48,8 @@ function GameChat(props) {
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
+
+
     return (
         <>
             <div className={styles.chat}>
