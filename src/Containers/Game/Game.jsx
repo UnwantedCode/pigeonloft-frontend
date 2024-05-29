@@ -13,7 +13,7 @@ import {useAuth} from "@/Components/Auth/Auth.jsx";
 
 
 function Game() {
-    const [game, setGame] = useState('kpgn');
+    const [game, setGame] = useState('piotrus');
     const roomId = parseInt(useParams().roomId);
     console.log(roomId);
     const { getJwtToken } = useAuth();
@@ -41,7 +41,9 @@ function Game() {
                 <div className={styles.wrapper}>
                     {game === 'kpn' &&  <RockPaperScissors />}
                     {game === 'warcaby' &&  <Checkers />}
-                    {game === 'piotrus' &&  <LittlePeter />}
+                    {game === 'piotrus' &&  <LittlePeter
+                        connection={SignalRService.connection}
+                    />}
                     <GameChat
                         connection={SignalRService.connection}
                         backendMessages={backendMessages}
