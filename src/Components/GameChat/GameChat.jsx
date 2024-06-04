@@ -55,7 +55,7 @@ function GameChat({connection, backendMessages}) {
             <div className={styles.chat}>
                 <div className={styles.chatHeader}>
                     <div className={styles.chatHeaderLeft}>
-                        <div className={styles.chatHeaderText}>Użytkownik 1</div>
+                        <div className={styles.chatHeaderText}>Ty</div>
                     </div>
                     <div className={styles.chatHeaderRight}>
                         <div className={styles.chatHeaderText}>Przeciwnik</div>

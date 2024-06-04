@@ -42,7 +42,7 @@ function LoginPanel() {
                 navigate('/'); // Przekierowanie na główną stronę
             })
             .catch((error) => {
-                setError('xxxx' +error.message);
+                setError(error.message);
             });
 
     };

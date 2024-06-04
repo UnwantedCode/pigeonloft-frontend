@@ -6,34 +6,16 @@ import {useAuth} from "@/Components/Auth/Auth.jsx";
 
 function LittlePeter({connection}) {
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
-    const [gemeState, setGameState] = useState({});
+    const [gameState, setGameState] = useState({});
     const { decodeJwtToken } = useAuth();
     const email = decodeJwtToken()["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
-    console.log(gemeState);
-    // cretate connection on ReceiveGameState usin connection.on
+    console.log(gameState);
+    const [text, setText] = useState('');
+    // cretate connection on ReceivegameStateusin connection.on
 
     const [enemyCards, setEnemyCards] = useState([]);
     const [myCards, setMyCards] = useState([]);
      const [cardsPlayed, setCardsPlayed] = useState([]);
-
-/*    setEnemyCards([
-        { suit: 'others', rank: 'back' },
-        { suit: 'others', rank: 'back' },
-        { suit: 'others', rank: 'back' },
-    ]);
-    setMyCards([
-        { suit: 'spades', rank: 'a' },
-        { suit: 'diamonds', rank: '10' },
-        { suit: 'spades', rank: '8' },
-        { suit: 'spades', rank: '3' },
-        { suit: 'hearts', rank: '2' },
-    ]);
-    setCardsPlayed([
-        { suit: 'hearts', rank: 'q' },
-        { suit: 'spades', rank: 'q' },
-        { suit: 'others', rank: 'jb' },
-        { suit: 'others', rank: 'jr' },
-    ]);*/
 
     useEffect(() => {
         if (connection) {
@@ -44,14 +26,16 @@ function LittlePeter({connection}) {
     }, [connection]);
     // if gameStarted is true fill myCards with cards
     useEffect(() => {
-        if (gemeState.gameStarted) {
+        if (gameState.gameStarted) {
             let tmpMyCards = [];
-            gemeState.cards.forEach((card, index) => {
+            gameState.cards.forEach((card, index) => {
                 tmpMyCards.push({ suit: 'spades', rank: card });
             });
             setMyCards(tmpMyCards);
 
-            gemeState.opponents.forEach((oponent) => {
+            setCardsPlayed([]);
+
+            gameState.opponents.forEach((oponent) => {
                 if (oponent.name !== email) {
                     let tmpEnemyCards = [];
                     // oponent.cards is number of cards
@@ -60,10 +44,43 @@ function LittlePeter({connection}) {
                     }
                     setEnemyCards(tmpEnemyCards);
                 }
+                oponent.pairs.forEach((pair) => {
+                    setCardsPlayed(prevState => [...prevState, { suit: 'spades', rank: pair }]);
+                })
+
             });
 
         }
-    } , [gemeState.cards]);
+    } , [gameState.cards]);
+
+    useEffect(() => {
+        if (gameState.gameStarted) {
+            setText('Gra rozpoczęta');
+        } else {
+            if (gameState.opponents && gameState.opponents.length === 1)
+            {
+                setText('Czekaj na przeciwnika');
+            } else {
+                setText('Gra jest gotowa do rozpoczęcia');
+                if (gameState.opponents && gameState.opponents.length === 2) {
+                    gameState.opponents.forEach((oponent) => {
+                        if (oponent.name !== email) {
+                            oponent.started === true ? setText('Przeciwnik rozpoczął grę. Teraz ty powinieneś :)') : setText('Czekaj, aż przeciwnik rozpocznie grę');
+                        }
+                    });
+                }
+
+            }
+            resetGame();
+        }
+
+        if (gameState.gameStarted && gameState.whoseTurn === email) {
+            setText('Twój ruch');
+        }
+        if (gameState.gameStarted && gameState.whoseTurn !== email) {
+            setText('Ruch przeciwnika');
+        }
+    }, [gameState.gameStarted, gameState.opponents]);
 
     const offset = 30; // Odległość między kartami
     const middleIndexCardsPlayed = (cardsPlayed.length / 2);
@@ -73,24 +90,55 @@ function LittlePeter({connection}) {
         setSelectedCardIndex(index);
     };
     const handleButtonClick = () => {
-        if (gemeState.gameStarted == false) {
-            connection.invoke('StartGame');
-            console.log('StartGame');
+        if (gameState.gameStarted == false) {
+            gameState.opponents.forEach((oponent) => {
+                if (oponent.name === email) {
+                    if (oponent.started === false) {
+                        connection.invoke('StartGame');
+                        console.log('StartGame');
+                    }
+                }
+            })
+
             setSelectedCardIndex(null);
         }
-        if (gemeState.gameStarted == true) {
-            if (gemeState.whoseTurn === email && selectedCardIndex !== null) {
-                connection.invoke('SendCommand', 'ChooseCard', selectedCardIndex.toString())
+        if (gameState.gameStarted == true) {
+            if (gameState.whoseTurn === email && selectedCardIndex !== null) {
+                let selectedCard = selectedCardIndex +1;
+                connection.invoke('SendCommand', 'ChooseCard', selectedCard.toString())
                 setSelectedCardIndex(null);
             }
         }
     }
+
+    useEffect(() => {
+        if (gameState&& gameState.phase === 'GameLittlePeterStateFinished') {
+            resetGame();
+            if (gameState.cards.length === 0) {
+                setText('Wygrałeś');
+            } else {
+                setText('Przegrałeś');
+            }
+        }
+    }, [gameState]);
+
+
+
+    function resetGame() {
+        setEnemyCards([]);
+        setMyCards([]);
+        setCardsPlayed([]);
+    }
+
     return (
         <>
             <Helmet>
                 <title>Piotruś</title>
             </Helmet>
             <div className={styles.gameWrapper}>
+                <div className={styles.top}>
+                {text !== '' && <div className={styles.text}>{text}</div>}
+
                 <div className={styles.enemyDeck}>
                     {enemyCards.map((card, index) => (
                         <div
@@ -103,7 +151,7 @@ function LittlePeter({connection}) {
                         </div>
                     ))}
                 </div>
-
+                </div>
                 <div className={styles.playArea}>
                     {cardsPlayed.map((card, index) => (
                         <div
@@ -119,7 +167,7 @@ function LittlePeter({connection}) {
                     <button
                         onClick={() => handleButtonClick()}
                         className={styles.button}>
-                        {gemeState.gameStarted ? 'DOBIERZ' : 'ROZPOCZNIJ'}
+                        {gameState.gameStarted ? 'DOBIERZ' : 'ROZPOCZNIJ'}
                         </button>
                     <div className={styles.myDeck}>
                         {myCards.map((card, index) => (

@@ -24,6 +24,10 @@ function Game() {
         SignalRService.startConnection(roomId, getJwtToken());
 
         SignalRService.onMessageReceived((receivedMessage) => {
+            // check receivedMessage 'joined the room' and change to 'dołączył do pokoju'
+            if (receivedMessage.content.includes('joined the room')) {
+                receivedMessage.content = receivedMessage.content.replace('joined the room', 'dołączył do pokoju');
+            }
             setBackendMessages(prevMessages => [...prevMessages, receivedMessage]);
         });
         return () => {
