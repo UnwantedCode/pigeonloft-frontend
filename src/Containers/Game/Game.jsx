@@ -12,8 +12,7 @@ import {useAuth} from "@/Components/Auth/Auth.jsx";
 
 
 
-function Game() {
-    const [game, setGame] = useState('piotrus');
+function Game({game}) {
     const roomId = parseInt(useParams().roomId);
     console.log(roomId);
     const { getJwtToken } = useAuth();
@@ -22,7 +21,6 @@ function Game() {
 
     useEffect(() => {
         SignalRService.startConnection(roomId, getJwtToken());
-
         SignalRService.onMessageReceived((receivedMessage) => {
             // check receivedMessage 'joined the room' and change to 'dołączył do pokoju'
             if (receivedMessage.content.includes('joined the room')) {
@@ -43,7 +41,9 @@ function Game() {
             </Helmet>
             <div id={styles.appContent}>
                 <div className={styles.wrapper}>
-                    {game === 'kpn' &&  <RockPaperScissors />}
+                    {game === 'kpn' &&  <RockPaperScissors
+                    connection={SignalRService.connection}
+                    />}
                     {game === 'warcaby' &&  <Checkers />}
                     {game === 'piotrus' &&  <LittlePeter
                         connection={SignalRService.connection}

@@ -72,7 +72,7 @@
 .chat .chatContent .chatMessages ::-webkit-scrollbar {
   display: none;
 }
-.chat .chatContent .chatMessages .chatMessageMy {
+.chat .chatContent .chatMessages .chatMessageEnemy {
   padding: 7px;
   align-self: flex-start;
   margin-bottom: 10px;
@@ -81,13 +81,13 @@
   border-bottom-left-radius: 7px;
   width: 90%;
 }
-.chat .chatContent .chatMessages .chatMessageMy .chatMessageText {
+.chat .chatContent .chatMessages .chatMessageEnemy .chatMessageText {
   border-radius: 20px;
   padding: 10px;
   display: inline-block;
   position: relative;
 }
-.chat .chatContent .chatMessages .chatMessageEnemy {
+.chat .chatContent .chatMessages .chatMessageMy {
   padding: 7px;
   align-self: flex-end;
   border-right: 7px solid #6C22A6;
@@ -97,7 +97,7 @@
   border-bottom-right-radius: 5px;
   width: 90%;
 }
-.chat .chatContent .chatMessages .chatMessageEnemy .chatMessageText {
+.chat .chatContent .chatMessages .chatMessageMy .chatMessageText {
   border-radius: 20px;
   padding: 10px;
   display: inline-block;

@@ -17,7 +17,7 @@ function MainPage() {
                     </p>
                     <div className={styles.gradientWraper}>
                         <div className={styles.gradientContainer}>
-                            <Link to={'/pokoje'} >
+                            <Link to={'/pokoje/Little%20Peter'} >
                                 <div className={styles.cart + ' ' + styles.peter}>
 
                                 <div className={styles.cartTop}>
@@ -45,7 +45,7 @@ function MainPage() {
                                 </div>
                             </div>
                             </Link>
-                            <Link to={'/pokoje'} >
+                            <Link to={'/pokoje/Paper%20Rock%20Scissors'} >
                             <div className={styles.cart + ' ' + styles.rockPaperScissors}>
 
                                 <div className={styles.cartTop}>

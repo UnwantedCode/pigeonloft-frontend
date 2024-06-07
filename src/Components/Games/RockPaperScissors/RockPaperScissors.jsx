@@ -5,9 +5,12 @@ import rockImage from '@/assets/images/games/rock_paper_scissors/rock.png'; // I
 import paperImage from '@/assets/images/games/rock_paper_scissors/paper.png'; // Import zdjęcia skały
 import scissorsImage from '@/assets/images/games/rock_paper_scissors/scissors.png';
 import {useEffect, useState} from "react"; // Import zdjęcia skały
-function RockPaperScissors() {
+import {useAuth} from "@/Components/Auth/Auth.jsx";
+
+function RockPaperScissors({connection}) {
 
     const [myChoice, setMyChoice] = useState(null);
+    const [gameState, setGameState] = useState({});
     const [enemyChoice, setEnemyChoice] = useState(null);
     const [result, setResult] = useState('Wybierz i zakończ turę!');
     const [myScore, setMyScore] = useState(0);
@@ -16,6 +19,9 @@ function RockPaperScissors() {
     const [gameStarted, setGameStarted] = useState(false);
     const [turnEnded, setTurnEnded] = useState(false);
     const [showPopup, setShowPopup] = useState(true);
+    const { decodeJwtToken } = useAuth();
+    const email = decodeJwtToken()["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
+    const [text, setText] = useState('');
 
     const choices = [
         { name: 'paper', image: paperImage },
@@ -23,30 +29,63 @@ function RockPaperScissors() {
         { name: 'scissors', image: scissorsImage },
     ];
 
+    useEffect(() => {
+        if (connection) {
+            connection.on('ReceiveGameState', (gameState) => {
+                setGameState(gameState);
+                console.log('Game state1:',gameState);
+                if(gameState.phase == "GameStonePaperScissorsStateFinished")
+                    {
+                        var enemyChoice;
+                        var myChoice;
+                        gameState.opponents.forEach((oponent) => {
+                            if (oponent.name !== email) {
+                                enemyChoice = oponent.move;
+                            }
+                            else 
+                            {
+                                myChoice = oponent.move;
+                            }
+                        })
+                        if(enemyChoice === "Paper") setEnemyChoice(choices[0]);
+                        if(enemyChoice === "Stone") setEnemyChoice(choices[1]);
+                        if(enemyChoice === "Scissors") setEnemyChoice(choices[2]);
+
+                        console.log("EnymyChoice",enemyChoice);
+                        console.log("MyChoice",myChoice);
+                        determineWinner(myChoice,enemyChoice);
+                        console.log('Finished');
+                    }
+            });
+        }
+        console.log('No connection');
+    }, [connection]);
+
     const startGame = () => {
-        setGameStarted(true);
-        setTurnEnded(false);
-        resetGame();
+        console.log("Klikam start")
+        if (gameState.gameStarted == false) {
+            setGameStarted(true);
+            gameState.opponents.forEach((oponent) => {
+                if (oponent.name === email) {
+                    if (oponent.started === false) {
+                        connection.invoke('StartGame');
+                        setEnemyChoice(0);
+                        setText('Oczekiwanie na ropoczęcie gry przez przeciwnika');
+                        console.log('StartGame');
+                    }
+                }
+            })
+        }
     };
 
     const endTurn = () => {
-        const enemyChoice = choices[Math.floor(Math.random() * choices.length)];
-        setEnemyChoice(enemyChoice);
-        setCountdown(3); // Start odliczania od 3
-
-        const countdownInterval = setInterval(() => {
-            setCountdown(prevCountdown => {
-                if (prevCountdown === 1) {
-                    clearInterval(countdownInterval);
-                    determineWinner(myChoice, enemyChoice);
-                    setGameStarted(false);
-                    setTurnEnded(false);
-
-                    return null;
-                }
-                return prevCountdown - 1;
-            });
-        }, 1000);
+        if (gameState.gameStarted == true) {
+            if (myChoice !== null) {
+                let selectedMove = myChoice.name;
+                connection.invoke('SendCommand', 'ChooseMove', selectedMove.toString())
+            }
+        }
+        setGameStarted(false);
     };
 
     const handleClick = (choice) => {
@@ -54,42 +93,55 @@ function RockPaperScissors() {
     };
 
     const determineWinner = (myChoice, enemyChoice) => {
-        if (myChoice.name === enemyChoice.name) {
-            setResult('Remis');
+        
+        if (myChoice === enemyChoice) {
+            setText('Remis');
         } else if (
-            (myChoice.name === 'rock' && enemyChoice.name === 'scissors') ||
-            (myChoice.name === 'paper' && enemyChoice.name === 'rock') ||
-            (myChoice.name === 'scissors' && enemyChoice.name === 'paper')
+            (myChoice === 'Stone' && enemyChoice === 'Scissors') ||
+            (myChoice === 'Paper' && enemyChoice === 'Stone') ||
+            (myChoice === 'Scissors' && enemyChoice === 'Paper')
         ) {
-            setResult('Zdobywasz punkt!');
-            setMyScore(myScore + 1);
+            setText('Zdobywasz punkt!');
+            setMyScore(prevScore => {
+                const newScore = prevScore + 1;
+                if (newScore === 5) {
+                    setText('WYGRAŁEŚ!!!');
+                    endGame();
+                }
+                return newScore;
+            });
         } else {
-            setResult('Przeciwnik zdobywa punkt!');
-            setEnemyScore(enemyScore + 1);
+            setText('Przeciwnik zdobywa punkt!');
+            setEnemyScore(prevScore => {
+                const newScore = prevScore + 1;
+                if (newScore === 5) {
+                    setText('PRZEGRAŁEŚ!!!');
+                    endGame();
+                }
+                return newScore;
+            });
         }
-
-        if (myScore === 4) {
-            endGame();
-            setResult('WYGRAŁEŚ!!!');
-        }
-        if (enemyScore === 4) {
-            endGame();
-            setResult('PRZEGRAŁEŚ!!!');
-        }
+        
+        console.log("MyScore", myScore);
+        console.log("EnemyScore", enemyScore);
     };
+    
 
     const resetGame = () => {
         setMyChoice(null);
         setEnemyChoice(null);
-        setResult('Wybierz i zakończ turę!');
+        setText('Wybierz i zakończ turę!');
         setCountdown(null);
     };
 
     const endGame = () => {
-        resetGame()
+        setMyChoice(null);
+        setEnemyChoice(null);
+        setText('Wybierz i zakończ turę!');
+        setCountdown(null);
         setMyScore(0);
         setEnemyScore(0);
-    }
+    };
 
     const closePopup = () => {
         setShowPopup(false);
@@ -100,6 +152,29 @@ function RockPaperScissors() {
             closePopup();
         }
     };
+
+    useEffect(() => {
+        if (gameState.gameStarted) {
+            setText('Gra rozpoczęta');
+        } else {
+            if (gameState.opponents && gameState.opponents.length === 1)
+            {
+                setText('Czekaj na przeciwnika');
+            } 
+            else if(gameState.phase !== "GameStonePaperScissorsStateFinished"){
+                console.log('Game state1a:',gameState);
+                setText('Gra jest gotowa do rozpoczęcia');
+                if (gameState.opponents && gameState.opponents.length === 2) {
+                    gameState.opponents.forEach((oponent) => {
+                        if (oponent.name !== email) {
+                            oponent.started === true ? setText('Przeciwnik rozpoczął grę. Teraz ty powinieneś :)') : setText('Czekaj, aż przeciwnik rozpocznie grę');
+                        }
+                    });
+                }
+
+            }
+        }
+    }, [gameState.gameStarted, gameState.opponents]);
 
     useEffect(() => {
         setShowPopup(true);
@@ -122,12 +197,13 @@ function RockPaperScissors() {
                 </div>
             )}
             <div className={styles.gameWrapper}>
+                {text !== '' && <div className={styles.text}>{text}</div>}
                 <div className={styles.top}>
                     <div id={styles.scoreContainer} className={styles.scoreContainer}>
                         <div className={styles.score + ' ' + styles.myScore}>{myScore}</div>
                         <div className={styles.score + ' ' + styles.enemyScore}>{enemyScore}</div>
                     </div>
-                    <div className={styles.score + ' ' + styles.result}>{result}</div>
+                    <div className={styles.score + ' ' + styles.result}>{gameState.className}</div>
 
                 </div>
                 <div className={styles.middle}>
@@ -138,8 +214,8 @@ function RockPaperScissors() {
                                 <div className={styles.text}>?</div>}
                         </div>
                         <div className={styles.enemyContainer}>
-                            {enemyChoice && countdown === null ? <img src={enemyChoice.image} alt={enemyChoice.name}/> :
-                                <div className={styles.text}>{countdown !== null ? countdown : '?'}</div>}
+                            {enemyChoice ? <img src={enemyChoice.image} alt={enemyChoice.name}/> :
+                                <div className={styles.text}>?</div>}
                         </div>
                         {/*                    <div className={styles.enemyContainer}>
                         <div className={styles.text}>?</div>
@@ -149,12 +225,20 @@ function RockPaperScissors() {
                         </div>*/}
                     </div>
                     <div className={styles.buttonContainer}>
-                        {!gameStarted && (
+                        {!gameStarted && gameState.phase === "GameStonePaperScissorsStateWaitingForPlayers" && (
                             <button className={styles.button} onClick={startGame}>START</button>
                         )}
-                        {gameStarted && !turnEnded && (
-                            <button className={styles.button} onClick={endTurn} disabled={!myChoice}>ZAKOŃCZ
-                                TURĘ</button>
+                        {!gameStarted && gameState.phase === "GameStonePaperScissorsStateFinished" && (
+                            <button className={styles.button} onClick={startGame} >NOWA GRA</button>
+                        )}
+                        {gameStarted && gameState.phase === "GameStonePaperScissorsStateWaitingForPlayers" && (
+                            <button className={styles.button} style={{ height: "190px", marginBottom: "20px" }} >Oczekiwanie na rozpoczęcie gry przez wszystkich graczy</button>
+                        )}
+                        {gameStarted && gameState.phase === "GameStonePaperScissorsStatePlaying" && (
+                            <button className={styles.button} onClick={endTurn} disabled={!myChoice}>PRZEŚLIJ WYBÓR</button>
+                        )}
+                        {!gameStarted && gameState.phase === "GameStonePaperScissorsStatePlaying" && (
+                            <button className={styles.button} style={{ height: "190px", marginBottom: "20px"}}>OCZEKIWANIE NA RUCH PRZECIWNIKA</button>
                         )}
                     </div>
 

@@ -83,7 +83,7 @@
             /* Ukrywa pasek przewijania w przeglądarkach Firefox */
             scrollbar-width: none;
 
-            .chatMessageMy{
+            .chatMessageEnemy{
                 padding: 7px;
                 align-self: flex-start;
                 margin-bottom: 10px;
@@ -99,7 +99,7 @@
                     position: relative;
                 }
             }
-            .chatMessageEnemy{
+            .chatMessageMy{
                 padding: 7px;
                 align-self: flex-end;
                 border-right: 7px solid #6C22A6;
